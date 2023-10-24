@@ -138,3 +138,8 @@ class Javbus(Parser):
             return getStoryline(self.number , uncensored = self.uncensored,
                                 proxies=self.proxies, verify=self.verify)
         return ''
+
+    def extraInit(self):
+        self.extraheader = {
+            'Accept-Language': 'zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja;q=0.6,zh-CN;q=0.5'
+        }
