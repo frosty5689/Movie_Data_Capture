@@ -75,6 +75,9 @@ class Airav(Parser):
             result = self.javbus.get('studio')
             if isinstance(result, str) and len(result):
                 return result
+        f = htmltree["factories"]
+        if 0 < len(f):
+            return f[0]
         return super().getStudio(htmltree)
 
     def getRelease(self, htmltree):
@@ -82,6 +85,11 @@ class Airav(Parser):
             result = self.javbus.get('release')
             if isinstance(result, str) and len(result):
                 return result
+
+        result = htmltree["publish_date"]
+        if len(result) > 0:
+            return result
+        
         try:
             return re.search(r'\d{4}-\d{2}-\d{2}', str(super().getRelease(htmltree))).group()
         except:
